@@ -208,7 +208,7 @@ In $C^3$, let $\vec{\alpha_1}$ = $(1,0,-i)$, $\vec{\alpha_2}$ = $(1+i,1-i,1)$ , 
 Now,
 \begin{align}
 C_1 \vec{\alpha_1} +C_2 \vec{\alpha_2}+C_3 \vec{\alpha_3} = \vec{0}\\
-\implies C_1 (1,0,-i) + C_2(1+i,1-i,1) + C_3(i,i,i) = \vec{0}
+\implies C_1 \myvec{1\\0\\-i}+ C_2\myvec{1+i\\1-i\\1} + C_3\myvec{i\\i\\i} = \vec{0}
 \end{align}
 So,
 \begin{align}
@@ -232,21 +232,21 @@ Now,
 \myvec{1 & 0 & i+1\\0 & 1+i & -1\\0 & 0 & 2-i}\myvec{C_1\\C_2\\C_3} = \myvec{0\\0\\0}\\
 \implies (2-i)C_3 = 0\\
 \implies C_3 = 0\\
-C_1 + (i-1)C_3 = 0\\
+C_1 + (i+1)C_3 = 0\\
 \implies C_1 = 0\\
 C_2 = 0
 \end{align}
-As $C_1,C_2,C_3 \neq 0$, so $\vec{\alpha_1}$,$\vec{\alpha_2}$ and $\vec{\alpha_3}$ are linearly independent and as the dimension of the vector space $C^3$ is 3. So we can say that these 3 vectors span the vector space $C^3$ which implies that these 3 vectors form a basis of vector space $C^3$.
+As $C_1,C_2,C_3 \neq 0$, so $\vec{\alpha_1}$,$\vec{\alpha_2}$ and $\vec{\alpha_3}$ are linearly independent which implies that these 3 vectors form a basis of vector space $C^3$.
 
-Now, consider a vector $\beta$ = $(a,b,c)$ such that
+Now, consider a vector $\beta$ = $\myvec{a\\b\\c}$ such that
 \begin{align}
-\beta R = \myvec{a & b & c}\myvec{\rho_1\\\rho_2\\\rho_3}
+\beta^T R = \myvec{a & b & c}\myvec{\rho_1\\\rho_2\\\rho_3}
 \end{align}
-Where $\rho_1$ = $\myvec{1 & 0 & i-1}$, $\rho_2$ = $\myvec{0 & 1+i & -1}$ and $\rho_3$ = $\myvec{0 & 0 & 2-i}$ are the rows of the matrix $R$.
+Where $\rho_1$ = $\myvec{1\\0\\i+1}$, $\rho_2$ = $\myvec{0\\1+i\\-1}$ and $\rho_3$ = $\myvec{0\\0\\2-i}$ are the rows of the matrix $R$.
 
 Now, 
 \begin{align}
-\beta R = \myvec{a & b & c}Q A
+\beta^T R = \myvec{a & b & c}Q A
 \end{align}
 When matrix $A$ is row reduced to the matrix $R$, if same operations are simultaneously operated on the Identity matrix $I$, then we can get matrix $Q$. So,
 \begin{align}
@@ -257,6 +257,12 @@ Now,
 x_i = \myvec{a & b & c}Q_i
 \end{align}
 where $x_i$ represents the coordinate of $i^{th}$ vector. So,
+\begin{align}
+\beta^T R = \myvec{x_1 & x_2 & x_3} A\\
+\implies \beta^T R = \myvec{x_1 & x_2 & x_3} \myvec{\alpha_1\\\alpha_2\\\alpha_3}\\
+\implies \beta^T R = x_1\alpha_1 + x_2\alpha_2+x_3\alpha_3
+\end{align}
+Now,
 \begin{align}
 x_1 = \myvec{a & b & c}Q_1\\
 \implies x_1 = \myvec{a & b & c} \myvec{1\\0\\1-i}\\
