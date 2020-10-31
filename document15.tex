@@ -230,70 +230,43 @@ Where $R$ is the row reduced form of matrix $A$. So $\vec{\alpha_1}$,$\vec{\alph
 
 Now, consider a vector $\beta$ = $\myvec{a\\b\\c}$ and let the coordinates are $x=\myvec{x_1\\x_2\\x_3}$ such that
 \begin{align}
-Ax = \myvec{a\\b\\c}
+Ax = \myvec{a\\b\\c}\\
+\implies x = A^{-1} \myvec{a\\b\\c}
 \end{align}
-Now, considering the augmented matrix:
+Let us consider a matrix $(A | I)$ where I is a 3x3 identity matrix.
+Now, applying the Gauss-Jordon theorem we can get $A^{-1}$
 \begin{multline}
-\myvec{1 & 1+i & i & a\\0 & 1-i & i & b\\-i & 1 & i & c}\xleftrightarrow[]{R_3\leftarrow R_3+iR_1}\\
-\myvec{1 & 1+i & i & a\\0 & 1-i & i & b\\0 & i & i-1 & c+ia}\\
-\xleftrightarrow[]{R_3\leftarrow R_3/i}\myvec{1 & 1+i & i & a\\0 & 1-i & i & b\\0 & 1 & 1+i & a-ic}\xleftrightarrow[]{R_3\leftarrow (1-i)R_3}\\
-\myvec{1 & 1+i & i &a\\0 & 1-i & i&b\\0 & 1-i & 2 & (a-c)-i(a+c)}\xleftrightarrow[]{R_3\leftarrow R_3-R_2}\\
-\myvec{1 & 1+i & i&a\\0 & 1-i & i&b\\0 & 0 & 2-i & (a-c-b)-i(a+c)}\\
-\xleftrightarrow[]{R_2\leftarrow \frac{1+i}{1-i}R_2}\myvec{1 & 1+i & i & a\\0 & 1+i & -1 & ib\\0 & 0 & 2-i & (a-c-b)-i(a+c)}\\
+\myvec{1 & 1+i & i & 1 & 0 & 0\\0 & 1-i & i & 0 & 1 & 0\\-i & 1 & i & 0 & 0 & 1}\\\xleftrightarrow[]{R_3\leftarrow R_3+iR_1}\\
+\myvec{1 & 1+i & i & 1 & 0 & 0\\0 & 1-i & i & 0 & 1 & 0\\0 & i & i-1 & i & 0 & 1}\\
+\xleftrightarrow[]{R_3\leftarrow R_3/i}\\
+\myvec{1 & 1+i & i & 1 & 0 & 0\\0 & 1-i & i & 0 & 1 & 0\\0 & 1 & 1+i & 1 & 0 & -i}\\
+\xleftrightarrow[]{R_3\leftarrow (1-i)R_3}\\
+\myvec{1 & 1+i & i &1 & 0 & 0\\0 & 1-i & i & 0 & 1 & 0\\0 & 1-i & 2 & 1-i & 0 & -i-1}\xleftrightarrow[]{R_3\leftarrow R_3-R_2}\\
+\myvec{1 & 1+i & i&1 & 0 & 0\\0 & 1-i & i&0 & 1 & 0\\0 & 0 & 2-i & 1-i & -1 & -i-1}\\
+\xleftrightarrow[]{R_2\leftarrow \frac{1+i}{1-i}R_2}\\
+\myvec{1 & 1+i & i & 1 & 0 & 0\\0 & 1+i & -1 & 0 & i & 0\\0 & 0 & 2-i & 1-i & -1 & -i-1}\\
 \xleftrightarrow[]{R_1\leftarrow R_1-R_2}\\
-\myvec{1 & 0 & i+1 & a-ib\\0 & 1+i & -1 & ib\\0 & 0 & 2-i & (a-c-b)-i(a+c)}\\
+\myvec{1 & 0 & i+1 & 1 & -i & 0\\0 & 1+i & -1 & 0 & i & 0\\0 & 0 & 2-i & 1-i & -1 & -i-1}\\
 \xleftrightarrow[R_1\leftarrow R_1+R_3]{R_3\leftarrow\frac{R_3}{2-i}}\\
-\myvec{1 & 0 & 3 & (2a-b-c)-i(a+b+c)\\0 & 1+i & -1 & ib\\0 & 0 & 1 & \frac{(a-c-b)-i(a+c)}{2-i}}\\
+\myvec{1 & 0 & 3 & 2-i & -i-1 & -i-1\\0 & 1+i & -1 & 0 & i & 0\\0 & 0 & 1 & \frac{3-i}{5} & -\frac{2+i}{5} & -\frac{3i+1}{5}}\\
 \xleftrightarrow[]{R_2\leftarrow R_2+R_3}\\
-\myvec{1 & 0 & 3 & (2a-b-c)-i(a+b+c)\\0 & 1+i & 0 & ib+\frac{(a-c-b)-i(a+c)}{2-i}\\0 & 0 & 1 & \frac{(a-c-b)-i(a+c)}{2-i}}\\
+\myvec{1 & 0 & 3 & 2-i & -i-1 & -i-1\\0 & 1+i & 0 & \frac{3-i}{5} & \frac{-2+4i}{5} & -\frac{3i+1}{5}\\0 & 0 & 1 & \frac{3-i}{5} & -\frac{2+i}{5} & -\frac{3i+1}{5}}\\
+\xleftrightarrow[]{R_2\leftarrow \frac{R_2}{1+i}}\\
+\myvec{1 & 0 & 3 & 2-i & -i-1 & -i-1\\0 & 1 & 0 & \frac{3-i}{5(1+i)} & \frac{-2+4i}{5(1+i)} & -\frac{3i+1}{5(1+i)}\\0 & 0 & 1 & \frac{3-i}{5} & -\frac{2+i}{5} & -\frac{3i+1}{5}}\\
 \xleftrightarrow[]{R_1\leftarrow R_1-3R_3}\\
-\myvec{1 & 0 & 0 & \frac{(a+b-2c)(1-2i)}{5}\\0 & 1 & 0 & \frac{(3a-2b-c)-i(a-4b+3c)}{5(1+i)}\\0 & 0 & 1 & \frac{(3a-2b-c)-i(a-4b+3c)}{5}}
 \end{multline}
-So,
 \begin{align}
-\myvec{1 & 0 & 0\\0 & 1 & 0\\0 & 0 & 1}\myvec{x_1\\x_2\\x_3}=\myvec{\frac{(a+b-2c)(1-2i)}{5}\\\frac{(3a-2b-c)-i(a-4b+3c)}{5(1+i)}\\\frac{(3a-2b-c)-i(a-4b+3c)}{5}}\\
-\implies \myvec{x_1\\x_2\\x_3}=\myvec{\frac{(a+b-2c)(1-2i)}{5}\\\frac{(3a-2b-c)-i(a-4b+3c)}{5(1+i)}\\\frac{(3a-2b-c)-i(a-4b+3c)}{5}}
+\myvec{1 & 0 & 0 & \frac{1-4i}{5} & \frac{1-2i}{5} & \frac{-2+4i}{5}\\0 & 1 & 0 & \frac{1-2i}{5} & \frac{1+3i}{5} & -\frac{2+i}{5}\\0 & 0 & 1 & \frac{3-i}{5} & -\frac{2+i}{5} & -\frac{3i+1}{5}}\\
+\implies (I|A^{-1}) = \myvec{1 & 0 & 0 & \frac{1-4i}{5} & \frac{1-2i}{5} & \frac{-2+4i}{5}\\0 & 1 & 0 & \frac{1-2i}{5} & \frac{1+3i}{5} & -\frac{2+i}{5}\\0 & 0 & 1 & \frac{3-i}{5} & -\frac{2+i}{5} & -\frac{3i+1}{5}}\\
+\implies A^{-1}=\myvec{\frac{1-4i}{5} & \frac{1-2i}{5} & \frac{-2+4i}{5}\\\frac{1-2i}{5} & \frac{1+3i}{5} & -\frac{2+i}{5}\\\frac{3-i}{5} & -\frac{2+i}{5} & -\frac{3i+1}{5}}
 \end{align}
-%Where $\rho_1$ = $\myvec{1\\0\\i+1}$, $\rho_2$ = $\myvec{0\\1+i\\-1}$ and $\rho_3$ = $\myvec{0\\0\\2-i}$ are the rows of the matrix $R$.
-%
-%Now, 
-%\begin{align}
-%\beta^T R = \myvec{a & b & c}Q A
-%\end{align}
-%When matrix $A$ is row reduced to the matrix $R$, if same operations are simultaneously operated on the Identity matrix $I$, then we can get matrix $Q$. So,
-%\begin{align}
-%Q= \myvec{1 & -i & 0\\0 & i & 0\\1-i & -1 & -i-1}
-%\end{align}
-%Now,
-%\begin{align}
-%x_i = \myvec{a & b & c}Q_i
-%\end{align}
-%where $x_i$ represents the coordinate of $i^{th}$ vector. So,
-%\begin{align}
-%\beta^T R = \myvec{x_1 & x_2 & x_3} A\\
-%\implies \beta^T R = \myvec{x_1 & x_2 & x_3} \myvec{\alpha_1\\\alpha_2\\\alpha_3}\\
-%\implies \beta^T R = x_1\alpha_1 + x_2\alpha_2+x_3\alpha_3
-%\end{align}
-%Now,
-%\begin{align}
-%x_1 = \myvec{a & b & c}Q_1\\
-%\implies x_1 = \myvec{a & b & c} \myvec{1\\0\\1-i}\\
-%\implies x_1 = a+c(1-i)\\
-%\implies x_1 = (a+c) - ic
-%\end{align}
-%Similarly,
-%\begin{align}
-%x_2 = \myvec{a & b & c}Q_2\\
-%\implies x_2 = \myvec{a & b & c} \myvec{-i\\i\\-1}\\
-%\implies x_2 = -c + i(b-a)
-%\end{align}
-%\begin{align}
-%x_3 = \myvec{a & b & c}Q_3\\
-%\implies x_3 = \myvec{a & b & c} \myvec{0\\0\\-i-1}\\
-%\implies x_3 = -c - ic
-%\end{align}
+ So,
+\begin{align}
+x = A^{-1} \myvec{a\\b\\c}\\
+\implies x = \frac{1}{5}\myvec{(1-4i)a + (1-2i)b +(-2+4i)c\\(1-2i)a + (1+3i)b -(2+i)c\\(3-i)a - (2+i)b -(3i+1)c}\\
+\implies \myvec{x_1\\x_2\\x_3} = \frac{1}{5}\myvec{(1-4i)a + (1-2i)b +(-2+4i)c\\(1-2i)a + (1+3i)b -(2+i)c\\(3-i)a - (2+i)b -(3i+1)c}
+\end{align}
 
-%Hence, it is proved that there there exist a matrix $C$ such that $CA=B$.
 %\renewcommand{\theequation}{\theenumi}
 %\begin{enumerate}[label=\thesection.\arabic*.,ref=\thesection.\theenumi]
 %\numberwithin{equation}{enumi}
